@@ -1,0 +1,13 @@
+diff --git a/dist/lib/AwsLocalAuthorizersPlugin.js b/dist/lib/AwsLocalAuthorizersPlugin.js
+index 1c5dc82249f1cd6df3943e2091d4100c78296c70..2c3e4ead80ad36609183ae94fa4ddc38ff3ad888 100644
+--- a/dist/lib/AwsLocalAuthorizersPlugin.js
++++ b/dist/lib/AwsLocalAuthorizersPlugin.js
+@@ -107,7 +107,7 @@ class AwsLocalAuthorizerPlugin {
+                     include: ['local-authorizers.js'],
+                     exclude: []
+                 },
+-                runtime: "nodejs12.x"
++                runtime: "nodejs16.x"
+             };
+             prev[authorizerName] = functionKey;
+             return prev;

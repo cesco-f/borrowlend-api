@@ -1,0 +1,31 @@
+# package directories
+/node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# esbuild directories
+.esbuild
+/.idea/
+/.vscode/
+/.local/
+/yarn-error.log
+/.build/
+/coverage/
+/lib/
+junit-jest-integration.xml
+junit-jest.xml
+/coverage-integration/
+
+.DS_Store
+.env
+
+# Yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

@@ -1,0 +1,7 @@
+node_modules
+coverage
+serverless
+serverless.ts
+test
+release.config.js
+jest*.config.ts

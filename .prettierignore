@@ -1,0 +1,13 @@
+coverage
+coverage-integration
+.serverless
+README.md
+CHANGELOG.md
+.build
+test/newman/collection
+test/newman/environments
+.pnp.cjs
+.pnp.loader.mjs
+/.yarn
+release.config.js
+.yarn-plugin-aws-codeartifact.yml
