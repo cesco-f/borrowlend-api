@@ -20,6 +20,7 @@ model FriendRequest {
 model User {
   id                     String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   lastName               String          @map("last_name")
+  name                   String
   email                  String          @unique
   friends                User[]          @relation("UserFriends")
   friendOf               User[]          @relation("UserFriends")
