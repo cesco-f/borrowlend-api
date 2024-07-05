@@ -16,4 +16,5 @@ export const hello = {
     },
   ],
   iamRoleStatements: [],
+  layers: [{ Ref: 'PrismaBorrowlendLambdaLayer' }],
 };

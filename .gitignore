@@ -29,3 +29,5 @@ junit-jest.xml
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+lambda-layers

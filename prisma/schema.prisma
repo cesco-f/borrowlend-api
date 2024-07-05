@@ -1,0 +1,30 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name     String @map("name")
+  lastName String @map("last_name")
+  email    String @unique
+  friends  User[] @relation("UserFriends")
+  friendOf User[] @relation("UserFriends")
+  items    Item[]
+}
+
+model Item {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title       String  @unique
+  author      String
+  coverUrl    String? @map("cover_url")
+  description String?
+  language    String
+  owners      User[]
+}
