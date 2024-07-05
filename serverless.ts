@@ -12,10 +12,11 @@ const environment: Record<string, string> = {
   NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
   POWERTOOLS_SERVICE_NAME: '${file(./package.json):name}',
   POWERTOOLS_LOG_LEVEL: 'INFO',
+  DATABASE_HOST: '${ssm:/rds-host}',
+  DATABASE_USER: '${ssm:/rds-user}',
+  DATABASE_PASSWORD: '${ssm:/rds-password}',
   DATABASE_URL:
-    'postgresql://t3evio:xau_q0NBEkW78hkCSLsgEeqA1SvEyvIuv9BMf@eu-central-1.sql.xata.sh:5432/borrowlend?schema=borrowlend',
-  SHADOW_DATABASE_URL:
-    'postgresql://t3evio:xau_q0NBEkW78hkCSLsgEeqA1SvEyvIuv9BMf@eu-central-1.sql.xata.sh:5432/borrowlend?schema=databasename-migrations',
+    'postgresql://${self:provider.environment.DATABASE_USER}:${self:provider.environment.DATABASE_PASSWORD}@${self:provider.environment.DATABASE_HOST}:5432/postgres?schema=borrowlend',
 };
 
 if (process.env.AWS_PROFILE === 'local') {
@@ -44,7 +45,7 @@ const serverlessConfiguration: AWS = {
     versionFunctions: false,
     stage: '${opt:stage, self:custom.defaultStage}',
     region: 'eu-central-1',
-    profile: '${self:custom.${self:custom.env}.profile}',
+    profile: 'borrowlend',
     logRetentionInDays: 30,
     deploymentBucket: {
       name: 'borrowlend-serverless-deployments',

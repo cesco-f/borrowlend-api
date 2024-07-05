@@ -9,22 +9,44 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
+model FriendRequest {
+  id         String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sender     User   @relation("SentFriendRequests", fields: [senderId], references: [id])
+  receiver   User   @relation("RecievedFriendRequests", fields: [receiverId], references: [id])
+  senderId   String @map("sender_id") @db.Uuid
+  receiverId String @map("receiver_id") @db.Uuid
+}
+
 model User {
-  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name     String @map("name")
-  lastName String @map("last_name")
-  email    String @unique
-  friends  User[] @relation("UserFriends")
-  friendOf User[] @relation("UserFriends")
-  items    Item[]
+  id                     String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lastName               String          @map("last_name")
+  email                  String          @unique
+  friends                User[]          @relation("UserFriends")
+  friendOf               User[]          @relation("UserFriends")
+  location               String          @default("Barcelona")
+  photoUrl               String?         @map("photo_url")
+  items                  UserItem[]
+  sentFriendRequests     FriendRequest[] @relation("SentFriendRequests")
+  receivedFriendRequests FriendRequest[] @relation("RecievedFriendRequests")
 }
 
 model Item {
-  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title       String  @unique
+  apiId       String     @id @unique @map("api_id")
+  title       String     @unique
   author      String
-  coverUrl    String? @map("cover_url")
+  coverUrl    String?    @map("cover_url")
   description String?
   language    String
-  owners      User[]
+  userItems   UserItem[]
+}
+
+model UserItem {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  item        Item    @relation(fields: [itemId], references: [apiId])
+  user        User    @relation(fields: [userId], references: [id])
+  itemId      String  @map("item_id")
+  userId      String  @map("user_id") @db.Uuid
+  isAvailable Boolean @default(true) @map("is_available")
+
+  @@unique([userId, itemId])
 }
