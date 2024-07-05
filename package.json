@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build:layer:prisma": "sh scripts/prisma-lambda-layer.sh",
+    "create:users": "sls export-env && ts-node scripts/createUsers.ts && npx sls deploy function -f login",
     "db:migrate:dev": "sls export-env && yarn db:migrate:generic",
     "db:migrate:generic": "prisma migrate deploy",
     "delete:alias": "sls remove --stage $CI_COMMIT_REF_NAME --verbose",
