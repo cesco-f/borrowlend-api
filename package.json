@@ -28,30 +28,30 @@
     "node": ">=20.10.0"
   },
   "dependencies": {
-    "@aws-lambda-powertools/logger": "2.2.0",
-    "@aws-lambda-powertools/tracer": "2.2.0",
-    "@middy/core": "5.4.2",
-    "@middy/http-error-handler": "5.4.2",
-    "@middy/http-json-body-parser": "5.4.2",
-    "@middy/http-security-headers": "5.4.2",
-    "@middy/validator": "5.4.2",
-    "@middy/warmup": "5.4.2",
+    "@aws-lambda-powertools/logger": "2.3.0",
+    "@aws-lambda-powertools/tracer": "2.3.0",
+    "@middy/core": "5.4.3",
+    "@middy/http-error-handler": "5.4.3",
+    "@middy/http-json-body-parser": "5.4.3",
+    "@middy/http-security-headers": "5.4.3",
+    "@middy/validator": "5.4.3",
+    "@middy/warmup": "5.4.3",
     "@prisma/client": "5.16.1",
     "http-errors": "2.0.0"
   },
   "devDependencies": {
-    "@aws-sdk/client-cognito-identity-provider": "3.600.0",
-    "@aws-sdk/client-lambda": "3.600.0",
+    "@aws-sdk/client-cognito-identity-provider": "3.609.0",
+    "@aws-sdk/client-lambda": "3.609.0",
     "@serverless/typescript": "3.38.0",
-    "@smithy/hash-stream-node": "3.1.1",
+    "@smithy/hash-stream-node": "3.1.2",
     "@types/aws-lambda": "8.10.140",
     "@types/http-errors": "2.0.4",
     "@types/jest": "29.5.12",
     "@types/node": "20.14.9",
-    "@typescript-eslint/eslint-plugin": "7.14.1",
-    "@typescript-eslint/parser": "7.14.1",
+    "@typescript-eslint/eslint-plugin": "7.15.0",
+    "@typescript-eslint/parser": "7.15.0",
     "dotenv": "16.4.5",
-    "esbuild": "0.21.5",
+    "esbuild": "0.23.0",
     "eslint": "8.57.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "18.0.0",
@@ -76,7 +76,7 @@
     "ts-jest": "29.1.5",
     "ts-node": "10.9.2",
     "tsconfig-paths": "4.2.0",
-    "typescript": "5.5.2"
+    "typescript": "5.5.3"
   },
   "packageManager": "yarn@4.3.1"
 }
