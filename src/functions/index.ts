@@ -4,4 +4,5 @@ export * from './getUsers';
 export * from './sendFriendRequest';
 export * from './replyToFriendRequest';
 export * from './deleteFriend';
-export * from './addItem';
+export * from './addUserItem';
+export * from './deleteUserItem';

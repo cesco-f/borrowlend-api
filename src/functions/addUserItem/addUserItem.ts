@@ -1,10 +1,11 @@
+import createHttpError from 'http-errors';
 import { APIGatewayHandler } from '@libs/types';
 import { addFirstMiddlewaresPublic, addBodyValidationMiddlewares, addLastMiddlewares } from '@libs/lambda';
 import schema from './schema';
 import { prismaClient } from 'prisma/client';
 import logger from '@libs/logger';
 
-const addItem: APIGatewayHandler<{
+const addUserItem: APIGatewayHandler<{
   id: string;
   author: string;
   title: string;
@@ -32,13 +33,20 @@ const addItem: APIGatewayHandler<{
     });
   } else {
     logger.info(`Item with id ${id} found, connecting to user with id ${userId}`);
-    await prismaClient.user.update({
-      where: { id: userId },
-      data: { items: { create: { item: { connect: { id } } } } },
-    });
+    await prismaClient.user
+      .update({
+        where: { id: userId },
+        data: { items: { create: { item: { connect: { id } } } } },
+      })
+      .catch((e) => {
+        if (e.code === 'P2002')
+          throw new createHttpError.Conflict(`User with id ${userId} already has item with id ${id}`);
+
+        throw e;
+      });
   }
 
   return { statusCode: 201, body: JSON.stringify(item) };
 };
 
-export const main = addLastMiddlewares(addBodyValidationMiddlewares(addFirstMiddlewaresPublic(), schema), addItem);
+export const main = addLastMiddlewares(addBodyValidationMiddlewares(addFirstMiddlewaresPublic(), schema), addUserItem);
