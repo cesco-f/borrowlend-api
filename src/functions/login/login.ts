@@ -9,7 +9,10 @@ import { mapUser } from '@libs/utils';
 const login: APIGatewayHandler<{ email: string; password: string }> = async (event) => {
   const { email, password } = event.body;
 
-  const user = await prismaClient.user.findUnique({ where: { email } });
+  const user = await prismaClient.user.findUnique({
+    where: { email },
+    include: { friendOf: true, friends: true, items: true, receivedFriendRequests: true, sentFriendRequests: true },
+  });
 
   if (!user) throw new createHttpError.NotFound('User not found');
 

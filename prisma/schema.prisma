@@ -11,10 +11,12 @@ datasource db {
 
 model FriendRequest {
   id         String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  sender     User   @relation("SentFriendRequests", fields: [senderId], references: [id])
-  receiver   User   @relation("RecievedFriendRequests", fields: [receiverId], references: [id])
+  sender     User   @relation("SentFriendRequests", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver   User   @relation("RecievedFriendRequests", fields: [receiverId], references: [id], onDelete: Cascade)
   senderId   String @map("sender_id") @db.Uuid
   receiverId String @map("receiver_id") @db.Uuid
+
+  @@unique([senderId, receiverId])
 }
 
 model User {
@@ -43,8 +45,8 @@ model Item {
 
 model UserItem {
   id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  item        Item    @relation(fields: [itemId], references: [apiId])
-  user        User    @relation(fields: [userId], references: [id])
+  item        Item    @relation(fields: [itemId], references: [apiId], onDelete: Cascade)
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   itemId      String  @map("item_id")
   userId      String  @map("user_id") @db.Uuid
   isAvailable Boolean @default(true) @map("is_available")
