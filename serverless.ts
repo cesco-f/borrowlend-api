@@ -19,7 +19,7 @@ const environment: Record<string, string> = {
     'postgresql://${self:provider.environment.DATABASE_USER}:${self:provider.environment.DATABASE_PASSWORD}@${self:provider.environment.DATABASE_HOST}:5432/postgres?schema=borrowlend',
 };
 
-if (process.env.AWS_PROFILE === 'local') {
+if (process.env.IS_LOCAL === 'true') {
   patterns.push('node_modules/.prisma/client/libquery_engine-darwin-*');
 }
 

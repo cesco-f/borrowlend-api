@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build:layer:prisma": "sh scripts/prisma-lambda-layer.sh",
-    "create:users": "sls export-env && ts-node scripts/createUsers.ts && npx sls deploy function -f login",
+    "create:users": "sls export-env && ts-node scripts/createUsers.ts && IS_DEPLOYING=true npx sls deploy function -f login",
     "db:migrate:dev": "sls export-env && yarn db:migrate:generic",
     "db:migrate:generic": "prisma migrate deploy",
     "delete:alias": "sls remove --stage $CI_COMMIT_REF_NAME --verbose",
@@ -18,7 +18,7 @@
     "package": "sls package",
     "print": "sls print",
     "prisma:migration:create": "sls export-env && prisma migrate dev --create-only",
-    "start": "AWS_PROFILE=local sls offline local-authorizers",
+    "start": "IS_LOCAL=true sls offline local-authorizers",
     "test:coverage": "yarn test:unit && yarn test:integration",
     "test:integration": "jest --config jest-integration.config.ts --passWithNoTests",
     "test:integration:watch": "yarn test:integration --watch",
@@ -38,6 +38,7 @@
     "@middy/validator": "5.4.3",
     "@middy/warmup": "5.4.3",
     "@prisma/client": "5.16.1",
+    "axios": "1.7.2",
     "http-errors": "2.0.0"
   },
   "devDependencies": {
