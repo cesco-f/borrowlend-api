@@ -26,4 +26,13 @@ export const users: User[] = [
     photoUrl:
       'https://scontent-mad1-1.cdninstagram.com/v/t51.2885-19/320327354_691460122518607_5806684026349555464_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-mad1-1.cdninstagram.com&_nc_cat=107&_nc_ohc=fheRv6n25OwQ7kNvgHJGS91&edm=AEhyXUkBAAAA&ccb=7-5&oh=00_AYD8s8CRa_sbU8QZlnC8fcRkp2MvN1Jib8tW5xLp09wGeQ&oe=668F2E5E&_nc_sid=8f1549',
   },
+  {
+    email: 'miri@borrow-lend.com',
+    password: 'test',
+    name: 'miriam',
+    lastName: 'cardona',
+    location: 'barcelona',
+    photoUrl:
+      'https://scontent-mad1-1.cdninstagram.com/v/t51.2885-19/122087106_344611943281383_934401531922501825_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-mad1-1.cdninstagram.com&_nc_cat=103&_nc_ohc=Fs2lR5X1C3MQ7kNvgGJUfgX&edm=AEhyXUkBAAAA&ccb=7-5&oh=00_AYAJ-_TrLGDJgkpH0xkcxa3228hpHuHBqsz8fSCV5bv9YA&oe=668F30B8&_nc_sid=8f1549',
+  },
 ];

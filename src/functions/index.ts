@@ -7,3 +7,4 @@ export * from './deleteFriend';
 export * from './addUserItem';
 export * from './deleteUserItem';
 export * from './updateUserItem';
+export * from './queryUserItems';
