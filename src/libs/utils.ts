@@ -1,3 +1,4 @@
+import { User } from '@prisma/client';
 import { APIGatewayEvent } from 'aws-lambda';
 
 type Method = 'post' | 'get' | 'put' | 'patch' | 'delete';
@@ -53,4 +54,15 @@ export const getFunction = ({
   ],
   iamRoleStatements: [],
   layers: [{ Ref: 'PrismaBorrowlendLambdaLayer' }],
+});
+
+const capitalizeFirstLetter = (value: string) => {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+};
+
+export const mapUser = (user: User): User => ({
+  ...user,
+  lastName: capitalizeFirstLetter(user.lastName),
+  name: capitalizeFirstLetter(user.name),
+  location: capitalizeFirstLetter(user.location),
 });

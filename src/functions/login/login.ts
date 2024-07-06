@@ -4,6 +4,7 @@ import { addFirstMiddlewaresPublic, addBodyValidationMiddlewares, addLastMiddlew
 import schema from './schema';
 import { prismaClient } from 'prisma/client';
 import { users } from '@libs/constants';
+import { mapUser } from '@libs/utils';
 
 const login: APIGatewayHandler<{ email: string; password: string }> = async (event) => {
   const { email, password } = event.body;
@@ -15,7 +16,7 @@ const login: APIGatewayHandler<{ email: string; password: string }> = async (eve
   if (!users.some((u) => u.email === email && u.password === password))
     throw new createHttpError.Forbidden('User auth failed');
 
-  return { statusCode: 200, body: JSON.stringify(user) };
+  return { statusCode: 200, body: JSON.stringify(mapUser(user)) };
 };
 
 export const main = addLastMiddlewares(addBodyValidationMiddlewares(addFirstMiddlewaresPublic(), schema), login);
