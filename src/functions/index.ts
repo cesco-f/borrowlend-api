@@ -8,3 +8,4 @@ export * from './addUserItem';
 export * from './deleteUserItem';
 export * from './updateUserItem';
 export * from './queryUserItems';
+export * from './getUserById';
