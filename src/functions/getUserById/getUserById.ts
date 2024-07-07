@@ -11,7 +11,7 @@ const getUserById: APIGatewayHandler<EmptyObject, { userId: string }> = async (e
     include: {
       friendOf: true,
       friends: true,
-      items: true,
+      items: { include: { item: true } },
       receivedFriendRequests: { include: { sender: true } },
       sentFriendRequests: true,
     },
@@ -21,7 +21,10 @@ const getUserById: APIGatewayHandler<EmptyObject, { userId: string }> = async (e
 
   return {
     statusCode: 200,
-    body: JSON.stringify(mapUser(user)),
+    body: JSON.stringify({
+      ...mapUser(user),
+      receivedFriendRequests: user.receivedFriendRequests.map((r) => ({ ...r, sender: mapUser(r.sender) })),
+    }),
   };
 };
 

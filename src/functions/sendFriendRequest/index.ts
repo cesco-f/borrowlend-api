@@ -3,7 +3,7 @@ import handlerPath from '@libs/handler-resolver';
 import { getFunction } from '@libs/utils';
 
 export const sendFriendRequest = getFunction({
-  customPath: 'friendRequest',
+  customPath: 'friendRequests',
   method: 'post',
   handler: `${handlerPath(__dirname)}/sendFriendRequest.main`,
 });

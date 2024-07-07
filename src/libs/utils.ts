@@ -62,11 +62,14 @@ const capitalizeFirstLetter = (value: string) => {
 
 export const mapUser = (
   user: User & { friends?: User[] | null; friendOf?: User[] | null }
-): User & { friends: User[]; friendOf: undefined } => ({
+): User & { friends?: User[]; friendOf: undefined } => ({
   ...user,
   lastName: capitalizeFirstLetter(user.lastName),
   name: capitalizeFirstLetter(user.name),
   location: capitalizeFirstLetter(user.location),
-  friends: [...(user.friends ? user.friends : []), ...(user.friendOf ? user.friendOf : [])],
+  friends:
+    user.friends || user.friendOf
+      ? [...(user.friends ? user.friends.map(mapUser) : []), ...(user.friendOf ? user.friendOf.map(mapUser) : [])]
+      : undefined,
   friendOf: undefined,
 });
