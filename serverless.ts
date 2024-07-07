@@ -37,6 +37,7 @@ const serverlessConfiguration: AWS = {
     'serverless-plugin-warmup',
     'serverless-offline-local-authorizers-plugin',
     'serverless-iam-roles-per-function',
+    'serverless-domain-manager',
   ],
   provider: {
     name: 'aws',

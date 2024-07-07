@@ -10,6 +10,12 @@ export default {
     minify: false,
     sourcemap: true,
   },
+  customDomain: {
+    domainName: 'api.borrow-lend.com',
+    basePath: 'borrowlend',
+    stage: '${self:provider.stage}',
+    createRoute53Record: true,
+  },
   esbuild: {
     bundle: true,
     minify: '${self:custom.${self:provider.stage}.minify, false}',
