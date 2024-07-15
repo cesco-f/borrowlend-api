@@ -16,7 +16,9 @@ const environment: Record<string, string> = {
   DATABASE_USER: '${ssm:/rds-user}',
   DATABASE_PASSWORD: '${ssm:/rds-password}',
   DATABASE_URL:
-    'postgresql://${self:provider.environment.DATABASE_USER}:${self:provider.environment.DATABASE_PASSWORD}@${self:provider.environment.DATABASE_HOST}:5432/postgres?schema=borrowlend',
+    'postgresql://${self:provider.environment.DATABASE_USER}:${self:provider.environment.DATABASE_PASSWORD}@${self:provider.environment.DATABASE_HOST}/borrowlend:main?sslmode=require',
+  SHADOW_DATABASE_URL:
+    'postgresql://${self:provider.environment.DATABASE_USER}:${self:provider.environment.DATABASE_PASSWORD}@${self:provider.environment.DATABASE_HOST}/shadow:main?sslmode=require',
 };
 
 if (process.env.IS_LOCAL === 'true') {
