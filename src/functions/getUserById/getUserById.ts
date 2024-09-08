@@ -9,8 +9,8 @@ const getUserById: APIGatewayHandler<EmptyObject, { userId: string }> = async (e
   const user = await prismaClient.user.findUnique({
     where: { id: userId },
     include: {
-      friendOf: true,
-      friends: true,
+      friendOf: { include: { items: true } },
+      friends: { include: { items: true } },
       items: { include: { item: true } },
       receivedFriendRequests: { include: { sender: true } },
       sentFriendRequests: true,

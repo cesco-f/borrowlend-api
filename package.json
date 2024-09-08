@@ -12,6 +12,7 @@
     "delete:alias": "sls remove --stage $CI_COMMIT_REF_NAME --verbose",
     "deploy:dev": "yarn build:layer:prisma && IS_DEPLOYING=true sls deploy --verbose",
     "deploy:alias": "sls deploy --stage $CI_COMMIT_REF_NAME --verbose",
+    "deploy:function": "yarn build:layer:prisma && IS_DEPLOYING=true sls deploy function -f",
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
