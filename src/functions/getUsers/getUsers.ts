@@ -9,6 +9,7 @@ const getUsers: APIGatewayHandler<EmptyObject, EmptyObject, { q: string }> = asy
   logger.info(`Getting users with q:${q}`);
   const users = await prismaClient.user.findMany({
     where: { OR: [{ name: { contains: q } }, { lastName: { contains: q } }] },
+    include: { _count: { select: { items: true } } },
   });
 
   return {
